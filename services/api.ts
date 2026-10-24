@@ -94,6 +94,47 @@ class ApiService {
     });
     return this.handleResponse<{ success: boolean; message: string; id: string }>(res);
   }
+
+  /**
+   * Fetches workflow runs for a repository to get total workflow count
+   * Route: @Get('workflow-runs/:owner/:repo') on backend github controller
+   */
+  async getWorkflowRuns(
+    owner: string,
+    repo: string,
+  ): Promise<{ total_count: number; workflow_runs: unknown[] }> {
+    const url = `${this.baseUrl}/github/workflow-runs/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+      cache: 'no-store',
+    });
+    return this.handleResponse<{ total_count: number; workflow_runs: unknown[] }>(res);
+  }
+
+  /**
+   * Dispatches a workflow on GitHub Actions
+   * Route: POST /repos/:owner/:repo/actions/workflows/:workflow_id/dispatches
+   */
+  async dispatchWorkflow(
+    owner: string,
+    repo: string,
+    workflowId: string,
+    ref: string = 'main',
+  ): Promise<{ success: boolean; message: string }> {
+    const url = `${this.baseUrl}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/actions/workflows/${encodeURIComponent(workflowId)}/dispatches`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ ref }),
+    });
+    return this.handleResponse<{ success: boolean; message: string }>(res);
+  }
 }
 
 export const api = new ApiService(API_BASE_URL);

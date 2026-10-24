@@ -1,4 +1,4 @@
-export type InvestigationStatus = 'success' | 'failure' | 'unknown';
+export type InvestigationStatus = 'success' | 'failure';
 
 export interface FailedJob {
   jobId: string;

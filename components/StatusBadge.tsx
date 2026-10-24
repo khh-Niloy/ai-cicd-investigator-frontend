@@ -8,19 +8,19 @@ interface StatusBadgeProps {
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md' }) => {
   const sizeClasses = {
-    sm: 'text-xs px-2 py-0.5 gap-1',
-    md: 'text-xs px-2.5 py-1 gap-1.5 font-medium',
-    lg: 'text-sm px-3.5 py-1.5 gap-2 font-medium',
+    sm: 'text-[10px] font-medium px-2 py-0.5 gap-1',
+    md: 'text-[11px] font-medium px-2.5 py-0.5 gap-1.5',
+    lg: 'text-xs font-medium px-3 py-1 gap-1.5',
   };
 
   switch (status) {
     case 'failure':
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 ${sizeClasses[size]}`}
+          className={`inline-flex items-center rounded-full bg-rose-50 text-rose-700 border border-rose-200 ${sizeClasses[size]}`}
         >
           <svg
-            className="w-3.5 h-3.5 shrink-0"
+            className="w-3 h-3 shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -34,10 +34,10 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md' })
     case 'success':
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ${sizeClasses[size]}`}
+          className={`inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 ${sizeClasses[size]}`}
         >
           <svg
-            className="w-3.5 h-3.5 shrink-0"
+            className="w-3 h-3 shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -48,24 +48,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md' })
           <span>Success</span>
         </span>
       );
-    case 'unknown':
     default:
-      return (
-        <span
-          className={`inline-flex items-center rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 ${sizeClasses[size]}`}
-        >
-          <svg
-            className="w-3.5 h-3.5 shrink-0"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2.5"
-          >
-            <circle cx="12" cy="12" r="9" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01" />
-          </svg>
-          <span>Unknown</span>
-        </span>
-      );
+      return null;
   }
 };

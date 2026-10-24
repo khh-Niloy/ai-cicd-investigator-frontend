@@ -47,26 +47,26 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white border border-[#e5e7eb] rounded-2xl w-full max-w-lg shadow-xl overflow-hidden">
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-zinc-800 flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-[#e5e7eb] flex items-center justify-between bg-white">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center shrink-0">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">Investigate Workflow Run</h3>
-              <p className="text-xs text-zinc-400">Trigger Gemini AI tool calling investigation</p>
+              <h3 className="text-base font-semibold text-[#0d0d0d] tracking-tight">Investigate Workflow Run</h3>
+              <p className="text-xs text-[#737373]">Trigger Gemini AI tool calling investigation</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
             disabled={isLoading}
-            className="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-zinc-800 transition-colors disabled:opacity-50 cursor-pointer"
+            className="text-[#737373] hover:text-[#0d0d0d] p-1.5 rounded-lg hover:bg-[#f4f4f4] transition-colors disabled:opacity-50 cursor-pointer"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -77,7 +77,7 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
         {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {errorMessage && (
-            <div className="p-3 text-xs bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl flex items-start gap-2">
+            <div className="p-3 text-xs bg-rose-50 border border-rose-200 text-rose-700 rounded-xl flex items-start gap-2">
               <svg className="w-4 h-4 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -86,8 +86,8 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
           )}
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-zinc-300">
-              GitHub Owner / Organization <span className="text-rose-400">*</span>
+            <label className="block text-xs font-medium text-[#0d0d0d]">
+              GitHub Owner / Organization <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -96,13 +96,13 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
               placeholder="e.g., vercel or octocat"
               value={owner}
               onChange={(e) => setOwner(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-mono"
+              className="w-full bg-[#f4f4f4] border border-[#e5e7eb] rounded-xl px-3.5 py-2.5 text-xs text-[#0d0d0d] placeholder-[#8e8e8e] focus:outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-400/15 transition-all font-mono shadow-2xs disabled:bg-[#e5e5e5] disabled:text-[#a3a3a3] disabled:cursor-not-allowed"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-zinc-300">
-              Repository Name <span className="text-rose-400">*</span>
+            <label className="block text-xs font-medium text-[#0d0d0d]">
+              Repository Name <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -111,13 +111,13 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
               placeholder="e.g., next.js or my-service"
               value={repo}
               onChange={(e) => setRepo(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-mono"
+              className="w-full bg-[#f4f4f4] border border-[#e5e7eb] rounded-xl px-3.5 py-2.5 text-xs text-[#0d0d0d] placeholder-[#8e8e8e] focus:outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-400/15 transition-all font-mono shadow-2xs disabled:bg-[#e5e5e5] disabled:text-[#a3a3a3] disabled:cursor-not-allowed"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-zinc-300">
-              Workflow Run ID <span className="text-rose-400">*</span>
+            <label className="block text-xs font-medium text-[#0d0d0d]">
+              Workflow Run ID <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -126,42 +126,42 @@ export const TriggerInvestigationModal: React.FC<TriggerInvestigationModalProps>
               placeholder="e.g., 1428571428"
               value={runId}
               onChange={(e) => setRunId(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-mono"
+              className="w-full bg-[#f4f4f4] border border-[#e5e7eb] rounded-xl px-3.5 py-2.5 text-xs text-[#0d0d0d] placeholder-[#8e8e8e] focus:outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-400/15 transition-all font-mono shadow-2xs disabled:bg-[#e5e5e5] disabled:text-[#a3a3a3] disabled:cursor-not-allowed"
             />
-            <p className="text-[11px] text-zinc-400">
+            <p className="text-[11px] text-[#737373]">
               Found in the GitHub Actions workflow run URL: actions/runs/[run_id]
             </p>
           </div>
 
           {isLoading && (
-            <div className="p-4 bg-emerald-950/20 border border-emerald-800/40 rounded-xl text-center space-y-2">
-              <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-semibold">
-                <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <div className="p-4 bg-blue-50/60 border border-blue-200 rounded-xl text-center space-y-1.5">
+              <div className="inline-flex items-center gap-2 text-blue-900 text-xs font-semibold">
+                <svg className="w-4 h-4 animate-spin text-blue-600" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
                 <span>ReleaseOps AI is investigating...</span>
               </div>
-              <p className="text-[11px] text-zinc-400">
+              <p className="text-[11px] text-[#525252]">
                 Executing GitHub API tools, reading workflow logs, and diagnosing root causes with Gemini.
               </p>
             </div>
           )}
 
           {/* Modal Footer */}
-          <div className="pt-3 border-t border-zinc-800 flex items-center justify-end gap-3">
+          <div className="pt-3 border-t border-[#e5e7eb] flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
               disabled={isLoading}
-              className="px-4 py-2 rounded-xl text-xs font-medium text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+              className="bg-white border border-[#e5e7eb] hover:bg-[#fbfbfb] text-[#262626] rounded-xl shadow-2xs px-4 py-2 text-xs font-medium transition-all cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-medium bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white shadow-lg shadow-emerald-500/20 transition-all disabled:opacity-50 cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold bg-[#0d0d0d] hover:bg-neutral-800 text-white shadow-2xs transition-all active:scale-[0.98] disabled:bg-[#e5e5e5] disabled:text-[#a3a3a3] disabled:cursor-not-allowed cursor-pointer"
             >
               {isLoading ? (
                 <>
