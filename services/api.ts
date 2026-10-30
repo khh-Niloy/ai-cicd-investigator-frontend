@@ -1,7 +1,6 @@
 import {
   Investigation,
   InvestigationsResponse,
-  InvestigatePayload,
   ApiErrorResponse,
 } from '../types/investigation';
 
@@ -59,22 +58,6 @@ class ApiService {
         Accept: 'application/json',
       },
       cache: 'no-store',
-    });
-    return this.handleResponse<Investigation>(res);
-  }
-
-  /**
-   * Triggers a new AI investigation workflow and returns the persisted record
-   */
-  async runInvestigation(payload: InvestigatePayload): Promise<Investigation> {
-    const url = `${this.baseUrl}/ai/investigate`;
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(payload),
     });
     return this.handleResponse<Investigation>(res);
   }

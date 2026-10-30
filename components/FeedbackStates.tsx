@@ -33,11 +33,7 @@ export const DetailSkeleton: React.FC = () => {
   );
 };
 
-interface EmptyStateProps {
-  onNewInvestigation: () => void;
-}
-
-export const EmptyState: React.FC<EmptyStateProps> = ({ onNewInvestigation }) => {
+export const EmptyState: React.FC = () => {
   return (
     <div className="text-center py-16 px-4 bg-[#f9f9f9] border border-dashed border-[#d4d4d4] hover:border-[#a3a3a3] rounded-2xl transition-colors">
       <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white border border-[#e5e7eb] text-[#0d0d0d] flex items-center justify-center shadow-2xs">
@@ -50,19 +46,12 @@ export const EmptyState: React.FC<EmptyStateProps> = ({ onNewInvestigation }) =>
           />
         </svg>
       </div>
-      <h3 className="text-base sm:text-lg font-semibold text-[#0d0d0d] tracking-tight mb-1">No Investigations Found</h3>
-      <p className="text-xs text-[#737373] max-w-md mx-auto mb-6 leading-relaxed">
-        No CI/CD workflow runs have been investigated yet. Trigger an investigation for any failed GitHub Actions run to analyze root causes and generate AI fixes.
+      <h3 className="text-base sm:text-lg font-semibold text-[#0d0d0d] tracking-tight mb-1">
+        Listening for CI/CD Workflow Runs
+      </h3>
+      <p className="text-xs text-[#737373] max-w-md mx-auto leading-relaxed">
+        No workflow runs have completed yet. When a GitHub Actions workflow finishes, webhooks will automatically trigger AI investigations for failures and track successful runs here.
       </p>
-      <button
-        onClick={onNewInvestigation}
-        className="inline-flex items-center gap-2 bg-[#0d0d0d] hover:bg-neutral-800 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-2xs transition-all active:scale-[0.98] cursor-pointer"
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-        </svg>
-        <span>Investigate Your First Workflow</span>
-      </button>
     </div>
   );
 };

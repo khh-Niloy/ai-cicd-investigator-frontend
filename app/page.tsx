@@ -4,13 +4,11 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import {
   Investigation,
   InvestigationStatus,
-  InvestigatePayload,
 } from "../types/investigation";
 import { api } from "../services/api";
 import { Navbar } from "../components/Navbar";
 import { InvestigationCard } from "../components/InvestigationCard";
 import { InvestigationDetail } from "../components/InvestigationDetail";
-import { TriggerInvestigationModal } from "../components/TriggerInvestigationModal";
 import {
   LoadingSkeleton,
   DetailSkeleton,
@@ -23,9 +21,7 @@ export default function Home() {
   const [selectedInvestigation, setSelectedInvestigation] =
     useState<Investigation | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // Status filter (failure | success)
   const [statusFilter, setStatusFilter] =
@@ -188,19 +184,6 @@ export default function Home() {
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Unknown error";
       alert(`Delete failed: ${message}`);
-    }
-  };
-
-  const handleTriggerInvestigation = async (payload: InvestigatePayload) => {
-    setIsSubmitting(true);
-    try {
-      const result = await api.runInvestigation(payload);
-      // Refresh list
-      await loadData();
-      // Select newly investigated run
-      setSelectedInvestigation(result);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -567,7 +550,7 @@ export default function Home() {
             </div>
           </div>
         ) : investigations.length === 0 ? (
-          <EmptyState onNewInvestigation={() => setIsModalOpen(true)} />
+          <EmptyState />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left Column: Investigation Runs List */}
@@ -651,14 +634,6 @@ export default function Home() {
           Icons8
         </a>
       </footer>
-
-      {/* Modal for Triggering Live Investigation */}
-      <TriggerInvestigationModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleTriggerInvestigation}
-        isLoading={isSubmitting}
-      />
     </div>
   );
 }
